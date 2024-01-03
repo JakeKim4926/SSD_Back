@@ -72,12 +72,8 @@ public class UserRestController {
 		HttpStatus status = null;
 		try {
 			if (tmp!= null) {
-				System.out.println(tmp.getId());
 				result.put("access-token", jwtUtil.createToken("id", tmp.getId()));
-				System.out.println("11111111111111111111111111");
-				//response에 "access-token" 삽입
 				result.put("message", tmp.getName());
-				System.out.println("22222222222222222222222222");
 				status = HttpStatus.ACCEPTED;
 			} else {
 				result.put("message", "fail");
@@ -85,7 +81,7 @@ public class UserRestController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.put("message", "fail");
+			result.put("message", "error");
 		}
 		System.out.println(result);
 		return new ResponseEntity<Map<String,Object>>(result, status);

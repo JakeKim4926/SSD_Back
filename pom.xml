@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.17</version>
+		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.seongseobdang</groupId>
-	<artifactId>Let-s-go-hiking</artifactId>
+	<groupId>com.decobook</groupId>
+	<artifactId>decobook</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SeongSeobDang_Spring_Boot</name>
-	<description>first project for Spring Boot</description>
+	<name>decobook</name>
+	<description>DECOBOOK pjt</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>2.3.1</version>
+			<version>3.0.3</version>
 		</dependency>
 
 		<dependency>
@@ -46,15 +46,22 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter-test</artifactId>
-			<version>2.3.1</version>
+			<version>3.0.3</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- Swagger 사용 -->
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+
+		<!-- JWT 사용하기 위해서 -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
@@ -72,22 +79,12 @@
 		</dependency>
 
 	</dependencies>
-<repositories>
-    <repository>
-        <id>central</id>
-        <url>http://repo.maven.apache.org/maven2/</url>
-    </repository>
-</repositories>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
-					</image>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

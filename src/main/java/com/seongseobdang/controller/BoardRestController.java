@@ -36,7 +36,6 @@ public class BoardRestController extends HttpServlet {
 	@ApiOperation(value = "게시글 조회", notes = "일정 위치의 일정 산의 게시판 글 전부 조회")
 	public ResponseEntity<?> list(@PathVariable int location_id, @PathVariable int mountain_id) {
 		List<Board> list = boardService.getList(location_id, mountain_id);
-		System.out.println("check 2");
 		if (list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
