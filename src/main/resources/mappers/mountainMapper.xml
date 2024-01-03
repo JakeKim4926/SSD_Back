@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seongseobdang.model.dao.MountainDao">
+	<select id="getMountains" parameterType="int" resultType="Mountain">
+		SELECT *
+		FROM mountain
+		WHERE location_id = #{location_id};
+	</select>
+	
+	<select id="getOneMountain" resultType="Mountain">
+		SELECT *
+		FROM mountain
+		WHERE location_id = #{location_id} AND mountain_id = #{mountain_id};
+	</select>
+</mapper>

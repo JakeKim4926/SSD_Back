@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seongseobdang.model.dao.BoardDao">
+
+	<!-- 전체글 조회 -->
+	<select id="selectAll" parameterType="int" resultType="Board">
+		SELECT * 
+		FROM board WHERE location_id = #{location_id} AND mountain_id = #{mountain_id};
+	</select>
+
+	<!-- 상세글 조회 -->
+	<select id="selectOne" resultType="Board" parameterType="int">
+		SELECT * 
+		FROM board WHERE location_id = #{location_id} AND mountain_id = #{mountain_id} AND board_id = #{board_id}
+	</select>
+
+	<!-- 게시글 등록(서8 박정훈) -->
+	<insert id="insertBoard" parameterType="Board">
+		<!-- INSERT INTO board (video_id, id, title, writer, content, reg_date, view_cnt)
+		VALUES (#{video_id}, #{id}, #{title}, #{writer}, #{content}, now(), 0) -->
+		 INSERT INTO board
+	VALUES (#{location_id}, #{mountain_id}, #{id}, #{board_id}, #{title}, #{writer}, #{content}, now(), 0)
+	</insert>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board
+		WHERE location_id = #{location_id} AND mountain_id = #{mountain_id} AND board_id = #{board_id}
+	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE board
+		SET view_cnt = view_cnt+1
+		WHERE location_id = #{location_id} AND mountain_id = #{mountain_id} AND board_id = #{board_id};
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<!-- 컬럼이 등록 날짜만 관리를 하고 있다. -->
+	<!-- 등록날짜 / 최근 조회날짜 / 수정 날짜 .... -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE board
+		SET title = #{title}, content = #{content}, reg_date = now()
+		WHERE location_id = #{location_id} AND mountain_id = #{mountain_id} AND board_id = #{board_id}
+	</update>
+	
+
+
+</mapper>
