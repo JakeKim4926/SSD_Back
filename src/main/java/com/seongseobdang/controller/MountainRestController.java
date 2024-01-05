@@ -2,6 +2,8 @@ package com.seongseobdang.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.seongseobdang.model.dto.Mountain;
 import com.seongseobdang.model.service.MountainService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-
 @RestController
 @RequestMapping("/api/mountain")
-@Api(tags = "산 컨트롤러")
+@Tag(name = "산 컨트롤러")
 @CrossOrigin("*")
 public class MountainRestController {
 
@@ -33,7 +32,7 @@ public class MountainRestController {
 
 	// 1. 목록
 	@GetMapping("/{location_id}")
-	@ApiOperation(value = "산 조회", notes = "일정 지역에 등록되어 있는 모든 산 출력")
+	@Operation(summary = "산 조회", description = "일정 지역에 등록되어 있는 모든 산 출력")
 	public ResponseEntity<?> getMountains(@PathVariable int location_id) {
 		List<Mountain> list = service.getMountains(location_id);
 
@@ -44,7 +43,7 @@ public class MountainRestController {
 	}
 	
 	@GetMapping("/{location_id}/{mountain_id}")
-	@ApiOperation(value = "산 하나 조회", notes = "id와 매칭 되는 산 조회")
+	@Operation(summary = "산 하나 조회", description = "id와 매칭 되는 산 조회")
 	public ResponseEntity<?> getMountains(@PathVariable int location_id, @PathVariable int mountain_id) {
 		Mountain mountain = service.getOneMountain(location_id, mountain_id);
 

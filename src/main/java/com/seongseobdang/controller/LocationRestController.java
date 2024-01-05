@@ -2,6 +2,8 @@ package com.seongseobdang.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +16,9 @@ import com.seongseobdang.model.dto.Location;
 import com.seongseobdang.model.dto.Mountain;
 import com.seongseobdang.model.service.LocationService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-
 @RestController
 @RequestMapping("/api/location")
-@Api(tags = "지역 컨트롤러")
+@Tag(name = "지역 컨트롤러")
 @CrossOrigin("*")
 public class LocationRestController {
 
@@ -33,7 +32,7 @@ public class LocationRestController {
 
 	// 1. 목록
 	@GetMapping("/")
-	@ApiOperation(value = "지역 조회", notes = "현재 등록되어 있는 지역들을 조회")
+	@Operation(summary = "지역 조회", description = "현재 등록되어 있는 지역들을 조회")
 	public ResponseEntity<?> getAllLocations() {
 		List<Location> list = service.getAllLocations();
 		System.out.println("일로 오니 ?");

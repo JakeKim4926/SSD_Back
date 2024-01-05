@@ -1,38 +1,26 @@
 package com.seongseobdang.config;
 
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 
-@Configuration
+@Configuration//@EnableWebMvc -> springdoc 2.3.0버전일 때 활성화
 public class SwaggerConfig {
 	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.seongseobdang.controller"))
-				.paths(PathSelectors.ant("/api*/**"))
-				.build()
-				.apiInfo(apiInfo());
+	public OpenAPI openAPI() {
+
+		Info info = new Info()
+				.title("SSD \n SeongSeobDang ")
+				.version("v1.0.0") //처음에 0.0.1이었음 (딱히상관없을듯)
+				.description("~FIND YOUR HIKING PLACE~");
+
+		return new OpenAPI()
+				.components(new Components())
+				.info(info);
 	}
-	
-	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-				.title("성섭당")
-				.description("렛츠고 하이킹")
-				.version("0.1")
-				.build();
-	}
-	
-	@Bean
-	public InternalResourceViewResolver defaultViewResolver() {
-	    return new InternalResourceViewResolver();
-	}
+
 }

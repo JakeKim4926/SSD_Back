@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +20,9 @@ import com.seongseobdang.model.dto.User;
 import com.seongseobdang.model.service.UserService;
 import com.seongseobdang.util.JwtUtil;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import springfox.documentation.annotations.ApiIgnore;
-
 @RestController
 @RequestMapping("/api/user")
-@Api(tags = "유저 컨트롤러")
+@Tag(name = "유저 컨트롤러")
 //@CrossOrigin("*")
 public class UserRestController {
 
@@ -41,13 +36,13 @@ public class UserRestController {
 
 	// 전체 유저 가져와
 	@GetMapping("/users")
-	@ApiOperation(value = "유저 조회", notes = "유저들 불러와")
+	@Operation(summary = "유저 조회", description = "유저들 불러와")
 	public List<User> userList() {
 		return userService.getUserList();
 	}
 
 	@PostMapping("/signup")
-	@ApiOperation(value = "회원 가입", notes = "회원 가입")
+	@Operation(summary = "회원 가입", description = "회원 가입")
 	public ResponseEntity<?> signup(@RequestBody User user) {
 		int result = userService.signup(user);
 
@@ -63,8 +58,7 @@ public class UserRestController {
 	// ID, PW가 맞는 지 확인만 해서
 	// 프론트로 넘겨주겠다.
 	@PostMapping("/login")
-	@ApiResponse(code = 200, message = "성공")
-	@ApiOperation(value = "로그인", notes = "ID/PW 입력")
+	@Operation(summary = "로그인", description = "ID/PW 입력")
 	public ResponseEntity<Map<String, Object>> login(String id, String pass) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		// User 서비스 -> DAO DB 실제 유저인지 아닌지 확인
@@ -88,10 +82,8 @@ public class UserRestController {
 	}
 
 	@GetMapping("/logout")
-	@ApiOperation(value = "로그아웃", notes = "로그아웃")
-	public ResponseEntity<String> logout(@ApiIgnore HttpSession session) {
-
-		session.invalidate();
+	@Operation(summary = "로그아웃", description = "로그아웃")
+	public ResponseEntity<String> logout() {
 		return new ResponseEntity<String>("Logout", HttpStatus.OK);
 	}
 

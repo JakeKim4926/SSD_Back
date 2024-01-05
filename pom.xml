@@ -8,11 +8,11 @@
 		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.decobook</groupId>
-	<artifactId>decobook</artifactId>
+	<groupId>com.seongseobdang</groupId>
+	<artifactId>seongseobdang</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>decobook</name>
-	<description>DECOBOOK pjt</description>
+	<name>seongseobdang</name>
+	<description>SSD pjt</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
