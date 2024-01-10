@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.seongseobdang.util.Output;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +47,9 @@ public class UserRestController {
 	public ResponseEntity<?> signup(@RequestBody User user) {
 		int result = userService.signup(user);
 
-		if (result == 1) {
+		if (result == Output.OK.getNum()) {
 			return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
-		} else if (result == 2) {
+		} else if (result == Output.ID_DUPLICATE.getNum()) {
 			return new ResponseEntity<Integer>(2, HttpStatus.OK);
 		}
 

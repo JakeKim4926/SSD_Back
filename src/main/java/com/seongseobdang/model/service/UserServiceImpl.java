@@ -2,6 +2,7 @@ package com.seongseobdang.model.service;
 
 import java.util.List;
 
+import com.seongseobdang.util.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,6 @@ import com.seongseobdang.model.dto.User;
 
 @Service
 public class UserServiceImpl implements UserService {
-    final static int ID_DUPLICATE = 0;
     @Autowired
     private UserDao userDao;
     
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     	
     	// 아이디 중복 여부 확인
     	if(tmp != null)
-    		return ID_DUPLICATE;
+    		return Output.ID_DUPLICATE.getNum();
     	
         return userDao.insertUser(user);
     }
