@@ -15,7 +15,6 @@ public class LocationServiceImpl implements LocationService{
 	private LocationDao dao;
 	
 	public LocationServiceImpl() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Autowired

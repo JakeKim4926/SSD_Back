@@ -35,8 +35,7 @@ public class LocationRestController {
 	@Operation(summary = "지역 조회", description = "현재 등록되어 있는 지역들을 조회")
 	public ResponseEntity<?> getAllLocations() {
 		List<Location> list = service.getAllLocations();
-		System.out.println("일로 오니 ?");
-		if (list == null || list.size() == 0)
+		if (list == null || list.isEmpty())
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		
 		return new ResponseEntity<List<Location>>(list, HttpStatus.OK);

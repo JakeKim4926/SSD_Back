@@ -23,7 +23,6 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public List<Board> getList(int location_id, int mountain_id) {
-		// TODO Auto-generated method stub
 		return dao.selectAll(location_id, mountain_id);
 	}
 
@@ -46,7 +45,6 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void removeBoard(int location_id, int mountain_id, int board_id) {
-		// TODO Auto-generated method stub
 		dao.deleteBoard(location_id, mountain_id, board_id);
 	}
 

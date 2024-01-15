@@ -36,7 +36,7 @@ public class MountainRestController {
 	public ResponseEntity<?> getMountains(@PathVariable int location_id) {
 		List<Mountain> list = service.getMountains(location_id);
 
-		if (list == null || list.size() == 0)
+		if (list == null || list.isEmpty())
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		
 		return new ResponseEntity<List<Mountain>>(list, HttpStatus.OK);

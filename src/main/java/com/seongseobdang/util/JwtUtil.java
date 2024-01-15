@@ -29,9 +29,6 @@ public class JwtUtil {
 	
 	//token 검사
 	public void valid(String token) throws Exception {
-		 
 		Jwts.parser().setSigningKey(SALT.getBytes("UTF-8")).parseClaimsJws(token);
-			
-		
 	}
 }

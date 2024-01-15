@@ -37,7 +37,7 @@ public class UserRestController {
 
 	// 전체 유저 가져와
 	@GetMapping("/users")
-	@Operation(summary = "유저 조회", description = "유저들 불러와")
+	@Operation(summary = "유저 조회", description = "유저 리스트 조회")
 	public List<User> userList() {
 		return userService.getUserList();
 	}
@@ -50,7 +50,7 @@ public class UserRestController {
 		if (result == Output.OK.getNum()) {
 			return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
 		} else if (result == Output.ID_DUPLICATE.getNum()) {
-			return new ResponseEntity<Integer>(2, HttpStatus.OK);
+			return new ResponseEntity<Integer>(Output.ID_DUPLICATE.getNum(), HttpStatus.OK);
 		}
 
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -62,7 +62,6 @@ public class UserRestController {
 	@Operation(summary = "로그인", description = "ID/PW 입력")
 	public ResponseEntity<Map<String, Object>> login(String id, String pass) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		// User 서비스 -> DAO DB 실제 유저인지 아닌지 확인
 		User tmp = userService.login(id, pass);
 		HttpStatus status = null;
 		try {
@@ -78,7 +77,6 @@ public class UserRestController {
 			e.printStackTrace();
 			result.put("message", "error");
 		}
-		System.out.println(result);
 		return new ResponseEntity<Map<String,Object>>(result, status);
 	}
 

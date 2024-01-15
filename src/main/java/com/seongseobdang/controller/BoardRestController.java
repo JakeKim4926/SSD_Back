@@ -35,7 +35,7 @@ public class BoardRestController extends HttpServlet {
 	@Operation(summary = "게시글 조회", description = "일정 위치의 일정 산의 게시판 글 전부 조회")
 	public ResponseEntity<?> list(@PathVariable int location_id, @PathVariable int mountain_id) {
 		List<Board> list = boardService.getList(location_id, mountain_id);
-		if (list == null || list.size() == 0)
+		if (list == null || list.isEmpty())
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
 	}
@@ -44,7 +44,6 @@ public class BoardRestController extends HttpServlet {
 	@GetMapping("/{location_id}/{mountain_id}/{board_id}")
 	@Operation(summary = "게시글 상세보기", description  = "게시판의 글 상세보기")
 	public ResponseEntity<Board> detail(@PathVariable int location_id, @PathVariable int mountain_id, @PathVariable int board_id) {
-		System.out.println("are you here");
 		Board board = boardService.getBoard(location_id, mountain_id, board_id);
 
 		return new ResponseEntity<Board>(board, HttpStatus.OK);
